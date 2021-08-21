@@ -191,7 +191,7 @@ pub fn delete(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
 
     let gen = quote! {
         impl #table_ident {
-            pub async fn delete(pool: & ::sqlx::PgPool) -> Result<Self, ::sqlx::Error> {
+            pub async fn delete(&self, pool: & ::sqlx::PgPool) -> Result<Self, ::sqlx::Error> {
                 let data = ::sqlx::query_as!(
                     Self,
                     #query,
