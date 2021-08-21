@@ -4,7 +4,7 @@ use darling::{
     FromDeriveInput, FromField,
     ast, util
 };
-use proc_macro_error::abort;
+use proc_macro_error::{abort, proc_macro_error};
 use quote::quote;
 use syn::{parse_macro_input, spanned::Spanned};
 
@@ -29,6 +29,7 @@ struct TableField {
 }
 
 #[proc_macro_derive(Get, attributes(table))]
+#[proc_macro_error]
 pub fn get(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
     let derive_input = parse_macro_input!(input as syn::DeriveInput);
     let table: TableData = TableData::from_derive_input(&derive_input).unwrap();
@@ -69,6 +70,7 @@ pub fn get(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
 }
 
 #[proc_macro_derive(Create, attributes(table))]
+#[proc_macro_error]
 pub fn create(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
     let derive_input = parse_macro_input!(input as syn::DeriveInput);
     let table: TableData = TableData::from_derive_input(&derive_input).unwrap();
@@ -116,6 +118,7 @@ pub fn create(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
 }
 
 #[proc_macro_derive(Update, attributes(table))]
+#[proc_macro_error]
 pub fn update(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
     let derive_input = parse_macro_input!(input as syn::DeriveInput);
     let table: TableData = TableData::from_derive_input(&derive_input).unwrap();
@@ -167,6 +170,7 @@ pub fn update(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
 }
 
 #[proc_macro_derive(Delete, attributes(table))]
+#[proc_macro_error]
 pub fn delete(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
     let derive_input = parse_macro_input!(input as syn::DeriveInput);
     let table: TableData = TableData::from_derive_input(&derive_input).unwrap();
