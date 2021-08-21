@@ -102,6 +102,7 @@ pub fn create(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
 
     let gen = quote! {
         impl #table_ident {
+            #[allow(clippy::too_many_arguments)]
             pub async fn create(pool: & ::sqlx::PgPool, #(#fn_args),*) -> Result<Self, ::sqlx::Error> {
                 let data = ::sqlx::query_as!(
                     Self,
