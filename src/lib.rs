@@ -203,4 +203,5 @@ pub fn delete(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
             }
         }
     };
+    gen.into()
 }
